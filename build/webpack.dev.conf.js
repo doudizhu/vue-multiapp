@@ -55,6 +55,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      chunks:['app'], // 配置多入口程序，必须用chunks指定在上下文entry内对应的入口文件别名
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'welcome.html',
+      template: 'welcome.html',
+      // chunks:['welcome'], // ///（目前暂且不用也不报错）配置多入口程序，必须用chunks指定在上下文entry内对应的入口文件别名
       inject: true
     }),
     // copy custom static assets

@@ -46,11 +46,13 @@ module.exports = {
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
+    welcome: path.resolve(__dirname, '../dist/welcome.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    // assetsPublicPath: '/',// *** 建立文件是放在一个HTTP服务器。打开index.html文件：//不工作。当直接使用浏览器打开文件时，浏览器控制台会报错。因为vue-cli的默认配置中, publishPath是用绝对目录
+    assetsPublicPath: './',
 
     /**
      * Source Maps

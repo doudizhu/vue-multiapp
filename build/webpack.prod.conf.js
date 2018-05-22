@@ -67,6 +67,24 @@ const webpackConfig = merge(baseWebpackConfig, {
         ? 'index.html'
         : config.build.index,
       template: 'index.html',
+      chunks: ['manifest', 'vendor', 'app'], // 如果使用了CommonsChunkPlugin，那么需要引入譬如common.js之类的公共js文件。
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: process.env.NODE_ENV === 'testing'
+        ? 'welcome.html'
+        : config.build.welcome,
+      template: 'welcome.html',
+      // chunks: ['manifest', 'vendor', 'welcome'],// ///（目前暂且不用也不报错）如果使用了CommonsChunkPlugin，那么需要引入譬如common.js之类的公共js文件。
       inject: true,
       minify: {
         removeComments: true,
